@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <location path="umbraco/uSyncReceive" xdt:Transform="Remove" xdt:Locator="Match(path)" />
+
+  <location path="umbraco/uSyncReceive" xdt:Transform="Insert" xdt:Locator="Match(path)">
+    <!-- Up the file upload limit to 500mb, this is for moving media around -->
+    <system.web>
+      <httpRuntime maxRequestLength="512000"/>
+    </system.web>
+    <system.webServer>
+      <security>
+        <!-- Restrict API access by IP - you can here restrict so only servers can talk to each other -->
+        <!--
+        <ipSecurity allowUnlisted="false">
+          <add allowed="true" ipAddress="192.168.0.1" subnetMask="255.255.255.0" />
+          <add allowed="true" ipAddress="127.0.0.1" subnetMask="255.255.255.0" />
+        </ipSecurity>
+        -->
+        <requestFiltering>
+          <requestLimits maxAllowedContentLength="524288000" />
+        </requestFiltering>
+      </security>
+    </system.webServer>
+  </location>
+</configuration>

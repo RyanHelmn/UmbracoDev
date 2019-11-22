@@ -1,0 +1,16 @@
+﻿<div ng-controller="ProductPicker.Controller as vm">
+    <button type="button" ng-click="vm.open()" class="btn btn-success" ng-if="!model.value">Choose A Product</button>
+
+    <div ng-if="model.value">
+        <ul class="umb-card-grid">
+            <li>
+                <a class="umb-card-grid-item" href="" title="{{ model.value.name }}">
+                    <i class="icon-box"></i>
+                    {{ model.value.name }}
+                </a>
+            </li>
+        </ul>
+
+        <button type="button" class="btn btn-danger">Remove Product</button>
+    </div>
+</div>

@@ -1,0 +1,86 @@
+﻿<div ng-controller="Commerce.OverviewController as vm" class="clearfix">
+    <umb-editor-view footer="false">
+        <umb-editor-header name="vm.name"
+                           name-locked="true"
+                           hide-icon="true"
+                           hide-description="true"
+                           hide-alias="true">
+        </umb-editor-header>
+
+        <umb-editor-container>
+            <umb-load-indicator ng-if="vm.loading"></umb-load-indicator>
+
+            <umb-editor-sub-header>
+                <umb-editor-sub-header-content-left>
+                    <umb-button button-style="success"
+                                type="button"
+                                action="vm.add()"
+                                label="Add">
+                    </umb-button>
+                </umb-editor-sub-header-content-left>
+
+                <umb-editor-sub-header-content-right>
+                    <div class="input-prepend">
+                        <span class="add-on">
+                            <i class="icon icon-search"></i>
+                        </span>
+                        <input class="form-control search-input" type="text" placeholder="Type to search...">
+                    </div>
+                </umb-editor-sub-header-content-right>
+            </umb-editor-sub-header>
+
+            <table class="table table-hover" ng-if="!vm.loading">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th ng-repeat="heading in vm.headings" class="text-capitalize">{{heading}}</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in vm.items track by item.id" style="cursor: pointer;" ng-click="edit(item.id)">
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td ng-repeat="(key, value) in item">
+                            <span ng-if="vm.getType(value) === 'string' || vm.getType(value) === 'number'">
+                                {{value | limitTo: 100}}{{value.length > 100 ? '...' : ''}}
+                            </span>
+
+                            <umb-checkmark checked="value"
+                                           size="xs"
+                                           ng-if="vm.getType(value) === 'boolean'">
+                            </umb-checkmark>
+                        </td>
+                        <td style="text-align: right;">
+                            <umb-button type="button"
+                                        size="xs"
+                                        button-style="info"
+                                        action="vm.edit(item, $event)"
+                                        label="Edit">
+                            </umb-button>
+
+                            <umb-button type="button"
+                                        size="xs"
+                                        button-style="danger"
+                                        action="vm.delete(item, $event)"
+                                        label="Delete">
+                            </umb-button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="{{vm.headings.length + 2}}" ng-if="!vm.items.length">
+                            <p><b>There are currently no items to display...</b></p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </umb-editor-container>
+    </umb-editor-view>
+</div>
+
+<style>
+    .text-capitalize {
+        text-transform: capitalize;
+    }
+</style>

@@ -1,0 +1,20 @@
+﻿@inherits UmbracoViewPage<UmbracoDev.DocumentTypes.BasePage>
+
+<title>@Model.MetaTitleOrDefault - @Umbraco.Website().TitleOrDefault</title>
+<meta name="twitter:title" content="@Model.MetaTitleOrDefault" />
+<meta name="og:title" content="@Model.MetaTitleOrDefault" />
+
+<meta name="description" content="@Model.MetaDescription" />
+<meta name="twitter:description" content="@Model.MetaDescription" />
+<meta name="og:description" content="@Model.MetaDescription" />
+
+<link rel="canonical" href="@Model.Url(mode: UrlMode.Absolute)" />
+
+@if (Model.MetaNoIndexNoFollow)
+{
+    <meta name="robots" content="NOINDEX, NOFOLLOW" />
+}
+else
+{
+    <meta name="robots" content="INDEX, FOLLOW" />
+}

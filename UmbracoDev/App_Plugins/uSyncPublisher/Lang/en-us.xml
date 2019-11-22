@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language alias="en" intName="English (US)" localName="English (US)" lcid="" culture="en-US">
+  <creator>
+    <name>Jumoo</name>
+    <link>http://jumoo.uk</link>
+  </creator>
+  <area alias="usyncpublish">
+    <key alias="intro">
+      <![CDATA[uSync.Publisher allows you to link your umbraco sites, and push and pull
+                content, media and other settings between them.]]></key>
+
+
+    <key alias="nochangeHeading">No changes detected</key>
+    <key alias="nochangeSummary"><![CDATA[It looks like these pages are already in sync with the target, so you do need to do anything]]></key>
+    <key alias="updating">Updating</key>
+    <key alias="items">Items</key>
+    <key alias="change">Change</key>
+
+    <key alias="defaultOn">Default On</key>
+    <key alias="defaultOff">Default Off</key>
+
+    <key alias="userSetOn">User can set</key>
+    <key alias="userSetOff">Locked</key>
+
+    <!-- dashboard -->
+    <key alias="setupAlert">
+      <![CDATA[Checkout the <a href="https://jumoo.co.uk/usync/publisher/setup/" target="_blank">Securtiy setup guide</a> to harden your setup.]]>
+    </key>
+
+    <key alias="incoming">Incoming enabled</key>
+    <key alias="incomingDesc">This server will listen and respond to requests from other servers</key>
+
+    <key alias="outgoing">Outgoing enabled</key>
+    <key alias="outgoingDesc">Allow publish / pull requests to be made from this server</key>
+
+    <key alias="securityKey">AppId/AppKey</key>
+    <key alias="securityKeyDesc">Setting up a secure channel between servers</key>
+    <key alias="securityKeyNote">
+      <![CDATA[<p>
+    Each server will need to communicate using a secuire AppId and Key, these
+    keys are stored in the uSync.Publish.Config file, you should ensure each server
+    has the correct keys installed in this file.
+    </p>
+    <p>
+    <em>If these values are blank in the config, then uSync.Publisher will create
+    new keys at startup, but they need to be the same on all servers.</em>
+    </p>]]>
+    </key>
+
+    <key alias="serverUrl">Server url</key>
+    <key alias="serverUrlDesc">This is the server URL; you will need this to connect other Umbraco instances to this one</key>
+    <key alias="serverUrlCopy">Copy this URL and use it in the server URL on your other installations</key>
+
+    <key alias="defaultOptions">Default publish options</key>
+    <key alias="defaultOptionsDesc">Default publishing options when not overridden by server settings</key>
+    
+    <!-- pickers -->
+    <key alias="pickerTitle">Select a target</key>
+    <key alias="pickerDesc">Choose where to publish content</key>
+    <key alias="pickerPullTitle">Select a source</key>
+    <key alias="pickerPullDesc">Choose where to pull content from</key>
+
+    <key alias="availible">Available</key>
+    <key alias="unavailible">Unavailable</key>
+
+    <!-- dialogs -->
+    <key alias="publishTitle">Publish content</key>
+    <key alias="publishMediaTitle">Push media</key>
+    <key alias="pullTitle">Pull content</key>
+    <key alias="pullMediaTitle">Pull media</key>
+
+    <key alias="reportPullTitle">Proposed changes</key>
+    <key alias="reportPullDesc">Items that will be imported to this site</key>
+
+    <key alias="reportTitle">Proposed changes</key>
+    <key alias="reportDesc">Changes that will be made to this site</key>
+
+    <key alias="includeChildren">Include children</key>
+    <key alias="includeChildrenDesc">include the children of this item</key>
+
+    <key alias="deleteMissing">Delete missing pages on target</key>
+    <key alias="deleteMissingDesc">If a folder includes other pages remove them</key>
+
+    <key alias="includeMedia">Include media</key>
+    <key alias="includeMediaDesc">Include media items used in these pages</key>
+
+    <key alias="includeLinked">Include linked pages</key>
+    <key alias="includeLinkedDesc">Include content pages linked to from selected items</key>
+
+    <key alias="includeAncestors">Include ancestors</key>
+    <key alias="includeAncestorsDesc">Include the parents of selected items</key>
+
+    <key alias="includeDependencies">Include dependencies</key>
+    <key alias="includeDependenciesDesc">Include settings for these pages, inc. doctypes and datatypes</key>
+
+    <key alias="includeFiles">Include files</key>
+    <key alias="includeFilesDesc">Include required templates, stylesheets and scripts</key>
+
+    <key alias="groups">User groups</key>
+    <key alias="groupsDesc">Users have to be members of these groups to push or pull items</key>
+
+    <!-- buttons -->
+    <key alias="send">Send to server</key>
+    <key alias="pull">Pull from server</key>
+    <key alias="import">Import</key>
+
+  </area>
+  <area alias="actions">
+    <key alias="pushContent">Push content</key>
+    <key alias="pullContent">Pull content</key>
+    <key alias="usyncAddServer">Add server</key>
+  </area>
+  <area alias="actionDescriptions">
+    <key alias="pushContent">Push content to other Umbraco sites/servers</key>
+    <key alias="pullContent">Pull content from other Umbraco sites/servers</key>
+  </area>
+  <area alias="actionCategories">
+    <key alias="publisher">uSync Publisher</key>
+  </area>
+  
+  
+</language>
+  

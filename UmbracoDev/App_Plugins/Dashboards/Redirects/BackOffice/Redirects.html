@@ -1,0 +1,28 @@
+﻿<div ng-controller="RedirectsDashboard.Controller" ng-form="Redirects">
+    <div class="row-fluid">
+        <div class="umb-editor-sub-header umb-editor-sub-header--">
+            <div class="umb-editor-sub-header__content-left ng-scope">
+                <button class="btn btn-success">Create Redirect</button>
+            </div>
+
+            <div class="umb-editor-sub-header__content-right ng-scope">
+                <form>
+                    <div class="input-prepend">
+                        <span class="add-on">
+                            <i class="icon icon-search"></i>
+                        </span>
+                        <input class="form-control search-input" type="text" placeholder="Type to search...">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="umb-box">
+        <div class="umb-box-content">
+            <div ng-include="'/App_Plugins/Dashboards/Redirects/BackOffice/Partials/list.html'" ng-show="!editRedirect"></div>
+            <div ng-include="'/App_Plugins/Dashboards/Redirects/BackOffice/Partials/edit.html'" ng-show="editRedirect"></div>
+            <div ng-include="'/App_Plugins/Dashboards/Redirects/BackOffice/Partials/create.html'" ng-show="createRedirect"></div>
+        </div>
+    </div>
+</div>

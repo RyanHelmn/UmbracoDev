@@ -1,0 +1,55 @@
+﻿<div ng-controller="ResponsiveImage.Prevalues.Controller">
+    <a ng-click="addCrop()" class="btn btn-success">Add Crop</a>
+
+    <div class="crops" ui-sortable ng-model="model.value">
+        <div class="crop" ng-repeat="crop in model.value">
+            <div class="form-inline">
+                <div class="control-group">
+                    <label ng-if="$index === 0">Name</label>
+                    <div class="form-controls">
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon icon-navigation handle"></i></span>
+                            <input type="text" placeholder="Name" class="input-small" ng-model="crop.name" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label ng-if="$index === 0">Width</label>
+                    <div class="form-controls">
+                        <div class="input-append">
+                            <input type="number" placeholder="" class="span6" ng-model="crop.width" />
+                            <span class="add-on">px</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label ng-if="$index === 0">Height</label>
+                    <div class="form-controls">
+                        <div class="input-append">
+                            <input type="number" placeholder="" class="span6" ng-model="crop.height" />
+                            <span class="add-on">px</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label ng-if="$index === 0">Breakpoint</label>
+                    <div class="form-controls">
+                        <div class="input-append">
+                            <input type="number" placeholder="" class="span6" ng-model="crop.breakpoint" />
+                            <span class="add-on">px</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="form-controls">
+                        <a class="btn btn-danger" ng-click="removeCrop($index)">Remove Crop</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,132 @@
+﻿<div ng-controller="uSyncPublishDialogController as vm">
+
+
+
+    <umb-editor-panel>
+        <umb-editor-header name="vm.page.title"
+                           name-locked="true"
+                           hide-alias="true"
+                           hide-icon="true"
+                           hide-description="true">
+        </umb-editor-header>
+        <umb-editor-container>
+
+            <uSync-expansion-licence product="vm.product.name"
+                                     version="vm.product.version">
+            </uSync-expansion-licence>
+
+            <div ng-if="vm.loading || vm.working">
+                <div class="usync-load-message">{{vm.step}}</div>
+                <umb-load-indicator></umb-load-indicator>
+                <div class="usync-load-step">{{vm.update.Message}}</div>
+            </div>
+            <div ng-if="!vm.loading && !vm.working">
+                <div ng-if="vm.errors.length > 0">
+                    <div ng-repeat="error in vm.errors" class="alert alert-error">
+                        {{error.ExceptionMessage}}
+                        <pre>{{error}}</pre>
+                    </div>
+                </div>
+                <div ng-if="!vm.reported">
+                    <usync-server-picker picker-title="@usyncpublish_pickerTitle"
+                                         description="@usyncpublish_pickerDesc"
+                                         servers="vm.servers"
+                                         on-selected="vm.onSelected(server)" />
+                </div>
+
+                <umb-box ng-if="!vm.reported && vm.selectedServer" class="usync-publish-options">
+                    <umb-box-header title="{{vm.selectedServer.Name}} Settings"
+                                    description="{{vm.selectedServer.Description}} [{{vm.selectedServer.Url}}]">
+                    </umb-box-header>
+                    <umb-box-content>
+                        <usync-send-option label="@usyncpublish_includeChildren"
+                                           description="@usyncpublish_includeChildrenDesc"
+                                           option="vm.flags.includeChildren">
+                        </usync-send-option>
+
+                        <div ng-if="vm.flags.includeChildren.value" class="usync-child-option">
+                            <usync-send-option label="@usyncpublish_deleteMissing"
+                                               description="@usyncpublish_deleteMissingDesc"
+                                               option="vm.flags.deleteMissing">
+                            </usync-send-option>
+                        </div>
+
+                        <usync-send-option label="@usyncpublish_includeMedia"
+                                           description="@usyncpublish_includeMediaDesc"
+                                           option="vm.flags.includeMedia">
+                        </usync-send-option>
+
+
+                        <usync-send-option label="@usyncpublish_includeLinked"
+                                           description="@usyncpublish_includeLinkedDesc"
+                                           option="vm.flags.includeLinked">
+                        </usync-send-option>
+
+                        <usync-send-option label="@usyncpublish_includeAncestors"
+                                           description="@usyncpublish_includeAncestorsDesc"
+                                           option="vm.flags.includeAncestors">
+                        </usync-send-option>
+
+                        <usync-send-option label="@usyncpublish_includeDependencies"
+                                           description="@usyncpublish_includeDependenciesDesc"
+                                           option="vm.flags.includeDependencies">
+                        </usync-send-option>
+
+                        <usync-send-option label="@usyncpublish_includeFiles"
+                                           description="@usyncpublish_includeFilesDesc"
+                                           option="vm.flags.includeFiles">
+                        </usync-send-option>
+
+                    </umb-box-content>
+                </umb-box>
+
+                <umb-box ng-if="vm.published">
+                    <umb-box-content class="alert alert-success">
+                        <div>{{vm.total}} items published to {{vm.selectedServer.Name}}</div>
+                    </umb-box-content>
+                </umb-box>
+
+                <umb-box ng-if="vm.reported">
+                    <umb-box-header title="{{vm.reportHeader.title}}"
+                                    description="{{vm.reportHeader.description}}"></umb-box-header>
+                    <umb-box-content>
+                        <usync-publish-result-view results="vm.report" total="vm.total"></usync-publish-result-view>
+                    </umb-box-content>
+                </umb-box>
+            </div>
+        </umb-editor-container>
+        <umb-editor-footer>
+            <umb-editor-footer-content-right>
+                <umb-button type="button"
+                            button-style="link"
+                            label-key="general_close"
+                            action="vm.close()">
+                </umb-button>
+
+                <umb-button ng-if="vm.reported && !vm.published && vm.total > 0"
+                            type="button"
+                            button-style="action"
+                            label-key="actions_publish"
+                            action="vm.publish()"
+                            button-state="vm.buttonState"
+                            disabled="!vm.canpublish">
+                </umb-button>
+
+                <umb-button ng-if="!vm.reported && !vm.done"
+                            type="button"
+                            button-style="action"
+                            label-key="usyncpublish_send"
+                            action="vm.send()"
+                            button-state="vm.buttonState"
+                            disabled="!vm.canpublish">
+                </umb-button>
+            </umb-editor-footer-content-right>
+        </umb-editor-footer>
+    </umb-editor-panel>
+
+
+    <umb-overlay ng-if="vm.overlay.show"
+                 model="vm.overlay"
+                 view="vm.overlay.view"
+                 position="center"></umb-overlay>
+</div>

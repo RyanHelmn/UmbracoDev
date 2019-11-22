@@ -1,0 +1,44 @@
+﻿@using UmbracoDev.Core.Enums
+@using ClientDependency.Core.Mvc
+@inherits PageTemplate<BasePage>
+
+@{
+    Html.RequiresCssBundle("Css");
+    Html.RequiresJsBundle("Js");
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    @Html.CachedPartial("~/Views/Partials/Core/Head/Meta.cshtml", null, int.MaxValue, true)
+
+    @Html.RenderCssHere()
+    @RenderSection("PageSpecificCss", false)
+    @Html.Partial("~/Views/Partials/Core/Head/Fonts.cshtml")
+
+    @Html.Partial("~/Views/Partials/Core/Seo/Analytics.cshtml", DocumentPosition.Head)
+    @Html.Partial("~/Views/Partials/Core/Head/Scripts.cshtml")
+</head>
+<body>
+    @Html.Partial("~/Views/Partials/Core/Seo/Analytics.cshtml", DocumentPosition.Body)
+
+    <header>
+        @Html.Partial("~/Views/Partials/Core/Header/Navigation.cshtml")
+    </header>
+
+    <main role="main">
+        @Html.Partial("~/Views/Partials/Core/Modules/Editor.cshtml")
+
+        @RenderBody()
+    </main>
+
+    @RenderSection("PrependFooterScripts", false)
+    @Html.RenderJsHere()
+    @RenderSection("AppendFooterScripts", false)
+
+    <script type="text/javascript">
+        $('[data-toggle="editSidebar"]').on('click', function () {
+            $('#editSidebar').toggleClass('open')
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<uSync xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <BackOffice>
+    <HandlerSets>
+      <Handlers Name="publisher" xdt:Transform="Remove" xdt:Locator="Match(Name)" />
+
+      <Handlers Name="publisher" xdt:Transform="Insert" xdt:Locator="Match(Name)">
+        <Handler Alias="dataTypeHandler" Enabled="true" Actions="All" />
+        <Handler Alias="languageHandler" Enabled="true" Actions="All" />
+        <Handler Alias="macroHandler" Enabled="true" Actions="All" />
+        <Handler Alias="mediaTypeHandler" Enabled="true" Actions="All" />
+        <Handler Alias="memberTypeHandler" Enabled="true" Actions="All" />
+        <Handler Alias="templateHandler" Enabled="true" Actions="All" />
+        <Handler Alias="contentTypeHandler" Enabled="true" Actions="All" />
+
+        <!-- publisher only send published content -->
+        <Handler Alias="publishedContentHandler" Enabled="true" Actions="All" />
+        <Handler Alias="contentTemplateHandler" Enabled="true" Actions="All" />
+        <Handler Alias="dictionaryHandler" Enabled="true" Actions="All" />
+        <Handler Alias="domainHandler" Enabled="true" Actions="All" />
+        <Handler Alias="mediaHandler" Enabled="true" Actions="All" />
+      </Handlers>
+    </HandlerSets>
+  </BackOffice>
+</uSync>

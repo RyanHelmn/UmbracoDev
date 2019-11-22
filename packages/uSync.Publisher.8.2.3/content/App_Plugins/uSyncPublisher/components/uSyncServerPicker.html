@@ -1,0 +1,24 @@
+﻿<div>
+    <umb-box>
+        <umb-box-header title="{{vm.titleString}}"
+                        description="{{vm.descriptionString}}"></umb-box-header>
+        <umb-box-content>
+
+            <div class="flex justify-center">
+                <div ng-repeat="server in vm.servers"
+                     ng-click="vm.selectServer(server)"
+                     class="usync-server-box"
+                     ng-class="{'selected': server.selected, 'disabled': !server.status.Enabled} ">
+                    <i class="icon {{server.Icon}}"></i>
+                    <h5>{{server.Name}}</h5>
+                    <div class="server-status">
+                        <div ng-if="server.status.Enabled"><i class="icon icon-check color-green"></i> <localize key="usyncpublish_availible">Availible</localize> </div>
+                        <div ng-if="server.status.Enabled === undefined"
+                             class="usync-wait-animate"></div>
+                        <div ng-if="server.status.Enabled === false"><i class="icon icon-wrong color-red"></i> <localize key="usyncpublish_unavailible">Unavailible</localize> </div>
+                    </div>
+                </div>
+            </div>
+        </umb-box-content>
+    </umb-box>
+</div>

@@ -1,0 +1,14 @@
+{
+  "sections": [
+    {
+      "alias": "commerce",
+      "name": "Commerce"
+    }
+  ],
+  "javascript": [
+    "~/App_Plugins/Commerce/commerce.resource.js",
+    "~/App_Plugins/Commerce/backoffice/CommerceTree/js/overview.controller.js",
+    "~/App_Plugins/Commerce/backoffice/CommerceTree/js/add.controller.js",
+    "~/App_Plugins/Commerce/backoffice/CommerceTree/js/edit.controller.js"
+  ]
+}

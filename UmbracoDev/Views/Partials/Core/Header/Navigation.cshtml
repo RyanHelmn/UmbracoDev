@@ -1,0 +1,151 @@
+﻿@using Umbraco.Web.Controllers
+@using Umbraco.Web.Models
+@using Member = UmbracoDev.DocumentTypes.Member
+@inherits PageTemplate<BasePage>
+
+<nav class="navbar navbar-expand-lg py-3 navbar-dark bg-dark shadow-sm fixed-top main-navigation">
+    <div class="container">
+        <a href="@(Umbraco.Website().FirstChild<HomePage>().Url)" class="navbar-brand">
+            @*<img src="https://res.cloudinary.com/mhmd/image/upload/v1557368579/logo_iqjuay.png" width="45" alt="" class="d-inline-block align-middle mr-2">*@
+            <span class="text-uppercase font-weight-bold">@Umbraco.Website().TitleOrDefault</span>
+        </a>
+
+        <button type="button" data-toggle="collapse" data-target="#topNavigation" aria-controls="topNavigation" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div id="topNavigation" class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                @RenderNavigation()
+            </ul>
+        </div>
+    </div>
+</nav>
+
+@if (!(Model is LoginPage || Model is SignupPage))
+{
+    <nav class="navbar navbar-expand-lg py-3 navbar-light bg-light shadow-sm fixed-top fixed-top-2 checkout-navigation">
+        <div class="container">
+            <div class="row align-items-center w-100">
+                <div class="ml-auto">
+                    <div class="d-flex justify-content-end">
+                        <div class="widget-header">
+                            @if (Members.IsLoggedIn())
+                            {
+                                var currentMember = Members.GetCurrentMember();
+
+                                if (currentMember is Member member)
+                                {
+                                    <small class="title">Welcome back @member.FirstName!</small>
+                                    <div>
+                                        <a href="#">My Account</a>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <small class="title">Welcome guest!</small>
+                                <div>
+                                    <a href="#" class="">Sign in</a> <span class="dark-transp"> | </span>
+                                    <a href="#" class=""> Register</a>
+                                </div>
+                            }
+                        </div>
+                        <a href="#" class="widget-header border-left pl-3 ml-3">
+                            <div class="icontext">
+                                <div class="icon-wrap icon-sm round border">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </div>
+                            </div>
+                            <span class="badge badge-pill badge-danger notify">0</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+}
+
+
+@helper RenderNavigation()
+{
+    var navigation = Umbraco.SharedContent().FirstChild<Navigation>();
+    var topNavigation = navigation.TopNavigation;
+    var userNavigation = navigation.UserNavigation;
+
+    foreach (var item in topNavigation)
+    {
+        <li class="nav-item">
+            <a href="@item.TopLevelItem.Url" class="nav-link @( Umbraco.AssignedContentItem.Url == item.TopLevelItem.Url ? "active" : "")">@item.TopLevelItem.Name</a>
+        </li>
+    }
+
+    @*    <li>
+
+            <div class="dropdown">
+                    <button class="btn dropdown-toggle text-white-50" type="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-user"></i>
+                        @if (Members.IsLoggedIn())
+                        {
+                            var currentMember = Members.GetCurrentMember();
+
+                            if (currentMember is Member member)
+                            {
+                                @member.FullName
+                            }
+                        }
+                        else
+                        {
+                            @:User
+                        }
+
+                        <div class="dropdown-menu" aria-labelledby="userDropdown">
+                            @foreach (var item in userNavigation)
+                            {
+                                <div class="dropdown-item">
+                                    <a href="@item.Url" @(item.Target.IsNotNullOrWhitespace() ? $"target=\"{item.Target}\"" : "") class="dropdown-item-text">@item.Name</a>
+                                </div>
+                            }
+
+                            @if (Members.IsLoggedIn())
+                            {
+                                @RenderLogout()
+                            }
+                            else
+                            {
+                                @RenderLogin()
+                                @RenderRegister()
+                            }
+                        </div>
+                    </button>
+                </div>
+        </li>
+    *@
+}
+
+
+@helper RenderLogout()
+{
+    var logoutModel = new PostRedirectModel();
+    using (Html.BeginUmbracoForm<UmbLoginStatusController>("HandleLogout"))
+    {
+        <button type="submit" class="dropdown-item">Logout</button>
+        @Html.HiddenFor(m => logoutModel.RedirectUrl)
+    }
+}
+
+@helper RenderLogin()
+{
+    var loginPage = Umbraco.SingleContentOfType<LoginPage>(Umbraco.Website().Id);
+    <div class="dropdown-item">
+        <a href="@loginPage.Url" class="dropdown-item-text">@loginPage.Name</a>
+    </div>
+}
+
+@helper RenderRegister()
+{
+    var registerPage = Umbraco.SingleContentOfType<SignupPage>(Umbraco.Website().Id);
+    <div class="dropdown-item">
+        <a href="@registerPage.Url" class="dropdown-item-text">@registerPage.Name</a>
+    </div>
+}

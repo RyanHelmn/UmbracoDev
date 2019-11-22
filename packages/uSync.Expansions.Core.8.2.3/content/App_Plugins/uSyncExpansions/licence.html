@@ -1,0 +1,53 @@
+﻿<div ng-controller="uSyncLicenceController as vm">
+    <div ng-if="vm.loading">
+        <umb-load-indicator></umb-load-indicator>
+    </div>
+    <div ng-show="!vm.loading">
+        <umb-box>
+            <umb-box-header title="uSync.Complete Licence"
+                            description=""></umb-box-header>
+            <umb-box-content>
+                <div class="alert alert-{{vm.status.Type}}">
+                    <i class="icon icon-check"></i>
+                    Your licence is valid. {{vm.status.Message}}
+                </div>
+                <a href="{{vm.status.Link}}" ng-if="vm.status.Link.length > 0" class="btn btn-success" target="_blank">Purchase</a>
+                <!--
+    <div ng-if="vm.status.Type == 'success'">
+        <em>
+            This licence is valid for all product updates released before
+            {{vm.status.Expires | date}} [<a href="https://jumoo.co.uk/usync/extend/" target="_blank">Extend</a>]
+        </em>
+    </div>-->
+            </umb-box-content>
+        </umb-box>
+
+        <umb-box>
+            <umb-box-header title="Licence Details"></umb-box-header>
+            <umb-box-content>
+
+                <umb-control-group label="Licenced Domains"
+                                   description="Domains licenced to">
+                    <input type="text" class="umb-textstring umb-property-editor"
+                           ng-model="vm.licence.Domains" />
+                </umb-control-group>
+
+                <umb-control-group label="Licenced Key"
+                                   description="Key for licence">
+                    <input type="text" class="umb-textstring umb-property-editor"
+                           ng-model="vm.licence.Key" />
+                </umb-control-group>
+
+                <umb-control-group>
+                    <umb-button action="vm.save()"
+                                type="button"
+                                button-style="action"
+                                state="vm.buttonState"
+                                label-key="buttons_save"
+                                disabled="vm.buttonState === 'busy'">
+                    </umb-button>
+                </umb-control-group>
+            </umb-box-content>
+        </umb-box>
+    </div>
+</div>

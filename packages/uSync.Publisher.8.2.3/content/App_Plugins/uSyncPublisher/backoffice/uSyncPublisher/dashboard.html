@@ -1,0 +1,133 @@
+﻿<div ng-controller="uSyncPublisherDashboardController as vm">
+    <umb-editor-view>
+        <umb-editor-header name="'uSync Publisher'"
+                           description="'Send and Pull content from other Umbraco installs'"
+                           name-locked="true"
+                           description-locked="true"
+                           hide-icon="true"
+                           hide-alias="true"></umb-editor-header>
+        <umb-editor-container class="form-horizontal">
+            <umb-load-indicator ng-if="vm.loading"></umb-load-indicator>
+            <div ng-if="!vm.loading">
+
+                <umb-box>
+                    <umb-box-header title="uSync Publisher"></umb-box-header>
+                    <umb-box-content>
+
+                        <umb-control-group label="@usyncpublish_incoming"
+                                           description="@usyncpublish_incomingDesc">
+
+                            <umb-toggle on-click="vm.settings.IncomingEnabled = !vm.settings.IncomingEnabled"
+                                        checked="vm.settings.IncomingEnabled"></umb-toggle>
+
+                        </umb-control-group>
+
+                        <umb-control-group label="@usyncpublish_outgoing"
+                                           description="@usyncpublish_outgoingDesc">
+
+                            <umb-toggle on-click="vm.settings.OutgoingEnabled = !vm.settings.OutgoingEnabled"
+                                        checked="vm.settings.OutgoingEnabled"></umb-toggle>
+
+                        </umb-control-group>
+
+                        <umb-control-group label="@usyncpublish_securityKey"
+                                           description="@usyncpublish_securityKeyDesc">
+                            <div>
+                                <localize key="usyncpublish_securityKeyNote"></localize>
+                            </div>
+                        </umb-control-group>
+
+                        <umb-control-group label="@usyncpublish_serverUrl"
+                                           description="@usyncpublish_serverUrlDesc">
+
+                            <div class="input-group">
+                                <input type="text" id="serverUrl" readonly value="{{vm.settings.ServerUrl}}" class="umb-textstring umb-property-editor"
+                                       style="height:34px;max-width:80%;" />
+                                <div class="input-append addon">
+                                    <button ng-click="vm.copyText()" class="btn btn-default" title="copy">
+                                        <i class="icon icon-documents"></i>
+                                    </button>
+                                </div>
+                                <div>
+                                    <small class="muted"><localize key="usyncpublish_serverUrlCopy"></localize></small>
+                                </div>
+                            </div>
+                        </umb-control-group>
+
+                    </umb-box-content>
+                </umb-box>
+
+                <umb-box>
+                    <umb-box-content class="alert alert-info usync-alert">
+                        <localize key="usyncpublish_setupAlert">
+                            You should follow the standard safety setup steps, before enabling push and pull
+                            services see our
+                            <a href="https://jumoo.co.uk/usync/publisher/setup/" target="_blank">Setup Guide</a>
+                        </localize>
+                    </umb-box-content>
+                </umb-box>
+
+
+                <umb-box>
+                    <umb-box-header title-key="usyncpublish_defaultOptions"
+                                    description-key="usyncpublish_defaultOptionsDesc"></umb-box-header>
+                    <umb-box-content>
+
+                        <umb-control-group label="@usyncpublish_includeChildren"
+                                           description="@usyncpublish_includeChildrenDesc">
+                            <usync-user-controlled-boolean title="Include Children" option="vm.settings.SendSettings.IncludeChildren" />
+                        </umb-control-group>
+
+                        <umb-control-group label="@usyncpublish_includeMedia"
+                                           description="@usyncpublish_includeMediaDesc">
+                            <usync-user-controlled-boolean title="Include Media" option="vm.settings.SendSettings.IncludeMedia" />
+                        </umb-control-group>
+                        <umb-control-group label="@usyncpublish_deleteMissing"
+                                           description="@usyncpublish_deleteMissingDesc">
+                            <usync-user-controlled-boolean title="Delete Orphaned" option="vm.settings.SendSettings.DeleteMissing" />
+                        </umb-control-group>
+
+                        <umb-control-group label="@usyncpublish_includeDependencies"
+                                           description="@usyncpublish_includeDependenciesDesc">
+
+                            <usync-user-controlled-boolean title="Include Dependencies" option="vm.settings.SendSettings.IncludeDependencies" />
+                        </umb-control-group>
+                        <umb-control-group label="@usyncpublish_includeAncestors"
+                                           description="Include parent items when publishing">
+                            <usync-user-controlled-boolean option="vm.settings.SendSettings.IncludeAncestors" />
+                        </umb-control-group>
+
+                        <umb-control-group label="@usyncpublish_includeFiles"
+                                           description="@usyncpublish_includeFilesDesc">
+                            <usync-user-controlled-boolean title="Include Files" option="vm.settings.SendSettings.IncludeFiles" />
+                        </umb-control-group>
+                        <umb-control-group label="@usyncpublish_includeLinked"
+                                           description="@usyncpublish_includeLinkedDesc">
+                            <usync-user-controlled-boolean title="Include Linked" option="vm.settings.SendSettings.IncludeLinked" />
+                        </umb-control-group>
+
+                        <umb-control-group label="@usyncpublish_groups"
+                                           description="@usyncpublish_groupsDesc">
+                            <input type="text" id="groups" ng-model="vm.groups" class="umb-textstring umb-property-editor" />
+                        </umb-control-group>
+                    </umb-box-content>
+                </umb-box>
+
+
+            </div>
+        </umb-editor-container>
+
+        <umb-editor-footer>
+            <umb-editor-footer-content-right>
+                <div ng-if="!vm.loading">
+                    <umb-button type="button"
+                                button-style="action"
+                                label-key="buttons_save"
+                                state="vm.saveState"
+                                action="vm.save()">
+                    </umb-button>
+                </div>
+            </umb-editor-footer-content-right>
+        </umb-editor-footer>
+    </umb-editor-view>
+</div>

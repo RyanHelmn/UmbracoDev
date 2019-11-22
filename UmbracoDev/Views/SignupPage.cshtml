@@ -1,0 +1,32 @@
+﻿@inherits UmbracoViewPage<UmbracoDev.Controllers.Signup.SignupPageModel>
+
+@{
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+}
+
+<div class="container-fluid">
+    <div class="row no-gutter h-100">
+        <div class="col-12 bg-light">
+            <div class="signup d-flex align-items-center py-5 h-100">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-10 col-xl-7 mx-auto">
+                            <h1 class="display-4">@Model.Content.Name</h1>
+
+                            @if (Members.IsLoggedIn())
+                            {
+                                @Model.Content.AlreadyLoggedInText
+                            }
+                            else
+                            {
+                                <div class="text-muted mb-4">@Model.Content.LoginText</div>
+                                @Html.Partial("~/Views/Partials/Signup/Form.cshtml")
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

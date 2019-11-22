@@ -1,0 +1,7 @@
+{
+  "javascript": [
+    "~/App_Plugins/Dashboards/Redirects/BackOffice/redirects.controller.js",
+  ],
+  "css": [
+  ]
+}

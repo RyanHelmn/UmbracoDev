@@ -1,0 +1,31 @@
+﻿<table class="table table-hover ng-scope" ng-if="!loading">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Root Node</th>
+            <th>Target Root Node</th>
+            <th>Old URL</th>
+            <th>New URL</th>
+            <th>Status</th>
+            <th>Enabled</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="redirect in redirects" class="ng-scope">
+            <td><input type="checkbox" ng-model="redirect.selected" ng-change="selectRedirect()" /></td>
+            <td>{{redirect.rootNodeId}}</td>
+            <td>{{redirect.targetNodeId}}</td>
+            <td>{{redirect.oldUrl}}</td>
+            <td>{{redirect.newUrl}}</td>
+            <td>{{redirect.status}}</td>
+            <td>{{redirect.enabled}}</td>
+            <td><button class="btn" ng-click="editRedirect(redirect.id)">Edit</button></td>
+        </tr>
+        <tr ng-show="!redirects.length">
+            <td colspan="7">There are currently no redirects to display...</td>
+        </tr>
+    </tbody>
+</table>
+
+{{selectedRedirects}}

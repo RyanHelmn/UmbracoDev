@@ -1,0 +1,60 @@
+﻿@using Umbraco.Web.Security;
+@using Umbraco.Web.Composing;
+@inherits PageTemplate<BasePage>
+
+@{
+    var wrapper = new HttpContextWrapper(HttpContext.Current);
+    var currentUser = wrapper.GetCurrentIdentity(true);
+
+    if (currentUser == null) { return; }
+
+    var umbracoHelper = Current.UmbracoHelper;
+}
+
+<button type="button" data-toggle="editSidebar" class="btn btn-success rounded-circle edit-button">
+    <i class="fas fa-edit"></i>
+</button>
+
+<div class="navbar-collapse offcanvas-collapse" id="editSidebar">
+    <div class="sidebar-header">
+        <h3>Currently Editing @Model.Name</h3>
+    </div>
+</div>
+
+<style>
+    .edit-button {
+        bottom: 50px;
+        font-size: 25px;
+        height: 50px;
+        position: fixed;
+        right: 50px;
+        text-align: center;
+        width: 50px;
+    }
+
+    .offcanvas-collapse {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        width: 50%;
+        padding-right: 1rem;
+        padding-left: 1rem;
+        overflow-y: auto;
+        background-color: var(--gray-dark);
+        transition: -webkit-transform .3s ease-in-out;
+        transition: transform .3s ease-in-out;
+        transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
+        -webkit-transform: translateX(200%);
+        transform: translateX(200%);
+        z-index: 9999;
+    }
+
+        .offcanvas-collapse.open {
+            -webkit-transform: translateX(100%);
+            transform: translateX(100%); /* Account for horizontal padding on navbar */
+        }
+
+        .offcanvas-collapse .sidebar-header h3 {
+            text-align: center;
+        }
+</style>

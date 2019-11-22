@@ -1,0 +1,54 @@
+{
+  "propertyEditors": [
+    {
+      "alias": "UmbracoDev.ResponsiveImage",
+      "name": "Responsive Image",
+      "icon": "icon-crop",
+      "group": "Image Cropper",
+      "editor": {
+        "view": "~/App_Plugins/DataTypes/ResponsiveImage/responsiveimage.html"
+      },
+      "prevalues": {
+        "fields": [
+          {
+            "label": "Crops",
+            "description": "Define your crops here",
+            "key": "crops",
+            "view": "~/App_Plugins/DataTypes/ResponsiveImage/Prevalues/crops.html"
+          }
+        ]
+      }
+    },
+    {
+      "alias": "UmbracoDev.ProductPicker",
+      "name": "Product Picker",
+      "icon": "icon-shipping",
+      "group": "Products",
+      "editor": {
+        "view": "~/App_Plugins/DataTypes/ProductPicker/productpicker.html"
+      },
+      "prevalues": {
+        "fields": [
+          {
+            "label": "Number of Products",
+            "description": "Leave empty to have an infinite amount of products",
+            "key": "numberOfProducts",
+            "view": "number"
+          }
+        ]
+      }
+    }
+  ],
+  "javascript": [
+    "~/App_Plugins/DataTypes/ResponsiveImage/responsiveimage.controller.js",
+    "~/App_Plugins/DataTypes/ResponsiveImage/responsiveimage.prevalues.controller.js",
+
+    "~/App_Plugins/DataTypes/ProductPicker/productpicker.controller.js",
+    "~/App_Plugins/DataTypes/ProductPicker/productpicker.editor.controller.js",
+    "~/App_Plugins/DataTypes/ProductPicker/products.resource.js"
+  ],
+  "css": [
+    "~/App_Plugins/DataTypes/ResponsiveImage/responsiveimage.css",
+    "~/App_Plugins/DataTypes/ProductPicker/productpickereditor.css"
+  ]
+}

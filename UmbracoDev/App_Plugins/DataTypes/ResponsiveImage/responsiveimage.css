@@ -1,0 +1,27 @@
+﻿.crops {
+    margin-top: 30px;
+}
+
+    .crops .crop .control-group {
+        display: inline-block;
+    }
+
+        .crops .crop .control-group label {
+            font-weight: bold;
+        }
+
+        .crops .crop .control-group .form-controls {
+            width: 120px;
+        }
+
+            .crops .crop .control-group .form-controls > input {
+                width: 100%;
+            }
+
+            .crops .crop .control-group .form-controls .btn-danger {
+                vertical-align: top;
+            }
+
+            .crops .crop .control-group .form-controls .input-append > input {
+                width: 74%;
+            }

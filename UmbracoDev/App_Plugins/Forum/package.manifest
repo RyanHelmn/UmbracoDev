@@ -1,0 +1,11 @@
+{
+  "sections": [
+    {
+      "alias": "forum",
+      "name": "Forum"
+    }
+  ],
+  "javascript": [
+    "~/App_Plugins/Forum/Backoffice/ForumTree/Scripts/overview.controller.js"
+  ]
+}

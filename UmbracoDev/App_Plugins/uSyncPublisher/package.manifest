@@ -1,0 +1,22 @@
+{
+  "javascript": [
+    "~/App_Plugins/uSyncPublisher/Services/publishService.js",
+    "~/App_Plugins/uSyncPublisher/Resources/uSyncPublishDialogManager.js",
+    "~/App_Plugins/uSyncPublisher/Resources/uSyncPublishServerManager.js",
+
+    "~/App_Plugins/uSyncPublisher/Components/uSyncSendOptionComponent.js",
+    "~/App_Plugins/uSyncPublisher/Components/uSyncPublishResultComponent.js",
+    "~/App_Plugins/uSyncPublisher/Components/uSyncServerPickerComponent.js",
+    "~/App_Plugins/uSyncPublisher/Components/uSyncUserControlledBooleanComponent.js",
+
+    "~/App_Plugins/uSyncPublisher/Dialogs/publishDialogController.js",
+    "~/App_Plugins/uSyncPublisher/Dialogs/pullDialogController.js",
+
+    "~/App_Plugins/uSyncPublisher/backoffice/uSyncPublisher/dashboardController.js",
+    "~/App_Plugins/uSyncPublisher/backoffice/uSyncPublisher/serverSettingsController.js",
+    "~/App_Plugins/uSyncPublisher/backoffice/uSyncPublisher/deleteController.js"
+  ],
+  "css": [
+    "~/App_Plugins/uSyncPublisher/usyncpublish.css"
+  ]
+} 

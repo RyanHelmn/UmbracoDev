@@ -1,0 +1,6 @@
+﻿@model IEnumerable<IPublishedElement>
+
+@foreach (var item in Model)
+{
+    @Html.Partial($"~/Views/Partials/MainContent/NestedContent/{item.ContentType.Alias}.cshtml", item)
+}

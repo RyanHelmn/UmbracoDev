@@ -1,0 +1,16 @@
+﻿@using UmbracoDev.Core.Enums
+@using UmbracoDev.Core.Helpers
+@model DocumentPosition
+
+@* Prevents spoofing the analytics by only enabling them on production *@
+@if (WebConfigHelper.GetCurrentEnvironment() == CurrentEnvironment.Production)
+{
+    @* Some scripts like GTM have a head and a body script, define this when referencing the partial *@
+    if (Model == DocumentPosition.Head)
+    {
+
+    }
+    else
+    {
+    }
+}

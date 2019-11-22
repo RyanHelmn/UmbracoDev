@@ -1,0 +1,66 @@
+﻿
+<div ng-controller="ResponsiveImage.Controller">
+    <ng-form name="responsiveImageForm">
+        <div class="umb-mediapicker umb-mediapicker-single" ng-if="!imageSrc">
+            <ul class="umb-sortable-thumbnails">
+                <li class="add-wrapper">
+                    <a class="add-link add-link-square" ng-click="addImage()">
+                        <i class="icon icon-add large"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="imagecropper clearfix">
+            <div ng-if="currentCrop" style="float:left; max-width: 100%;" class="clearfix">
+                <div class="umb-cropper__container">
+
+                    <i ng-click="done()" class="icon icon-delete btn-round umb-close-cropper"></i>
+
+                    <div>
+                        <umb-image-crop height="{{currentCrop.height}}"
+                                        width="{{currentCrop.width}}"
+                                        crop="currentCrop.coordinates"
+                                        center="model.value.focalPoint"
+                                        max-size="450"
+                                        src="imageSrc">
+                        </umb-image-crop>
+                    </div>
+
+                    <div class="button-drawer" ng-if="currentCrop">
+                        <button class="btn btn-link" ng-click="reset()"><localize key="imagecropper_reset">Reset this crop</localize></button>
+                        <button class="btn" ng-click="close()"><localize key="imagecropper_undoEditCrop">Undo edits</localize></button>
+                        <button class="btn btn-success" ng-click="done()"><localize key="imagecropper_updateEditCrop">Done</localize></button>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="!currentCrop" class="umb-cropper-imageholder clearfix">
+                <umb-image-gravity src="imageSrc"
+                                   center="model.value.focalPoint"
+                                   on-image-loaded="imageLoaded">
+                </umb-image-gravity>
+                <a href="" class="btn btn-link btn-crop-delete" ng-click="clear()"><i class="icon-delete red"></i> <localize key="content_uploadClear">Remove file</localize></a>
+            </div>
+
+            <ul class="umb-sortable-thumbnails cropList clearfix">
+                <li ng-repeat="crop in model.value.crops" ng-class="{'current':currentCrop.alias === crop.alias}" ng-click="cropImage(crop)">
+
+                    <umb-image-thumbnail center="model.value.focalPoint"
+                                         crop="crop.coordinates"
+                                         src="imageSrc"
+                                         height="{{crop.height}}"
+                                         width="{{crop.width}}"
+                                         max-size="75">
+                    </umb-image-thumbnail>
+
+                    <div class="crop-information">
+                        <span class="crop-name crop-text">{{crop.alias}}</span>
+                        <span class="crop-size crop-text">{{crop.width}}px x {{crop.height}}px</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </ng-form>
+</div>

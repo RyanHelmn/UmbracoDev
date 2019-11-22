@@ -1,0 +1,21 @@
+﻿@using UmbracoDev.Controllers.Login
+@model LoginPageModel
+
+@using (Html.BeginUmbracoForm<LoginSurfaceController>("Login", FormMethod.Post))
+{
+    @Html.ValidationSummary()
+    @Html.AntiForgeryToken()
+
+    <div class="form-group mb-3">
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control rounded-pill border-0 shadow-sm px-4", type = "email", placeholder = "Email..." })
+    </div>
+    <div class="form-group mb-3">
+        @Html.PasswordFor(x => x.Password, new { @class = "form-control rounded-pill border-0 shadow-sm px-4 text-primary", placeholder = "Password..." })
+    </div>
+    <div class="custom-control custom-checkbox mb-3">
+        @Html.CheckBoxFor(x => x.RememberPassword, new { @class = "custom-control-input" })
+        @Html.LabelFor(x => x.RememberPassword, new { @class = "custom-control-label" })
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Login</button>
+}

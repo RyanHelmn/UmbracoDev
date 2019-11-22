@@ -1,0 +1,9 @@
+﻿<div ng-if="vm.canToggle(vm.option) || vm.showDisabled">
+    <umb-control-group label="{{vm.label}}"
+                       description="{{vm.description}}"
+                       ng-class="{'usync-option-disabled': !vm.canToggle(vm.option)}">
+        <umb-toggle on-click="vm.toggle(vm.option)"
+                    checked="vm.option.value"
+                    disabled="!vm.canToggle(vm.option)"></umb-toggle>
+    </umb-control-group>
+</div>

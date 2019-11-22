@@ -1,0 +1,56 @@
+﻿<div ng-controller="uSyncPublishSettingsController as vm">
+    <usync-expansion-licence product="'publisher'" version="8.0.0"></usync-expansion-licence>
+    <umb-box>
+        <umb-box-header title="uSync.Publisher"
+                        description="Send and Pull content from other Umbraco installs">
+            <umb-button action="vm.save()" type="button" button-style="success" label-key="buttons_save"></umb-button>
+        </umb-box-header>
+        <umb-box-content>
+            <p>
+                <localize key="usyncpublish_intro">
+                    uSync.Publisher allows you to link your Umbraco installations and push and pull
+                    content, media and other settings between them.
+                </localize>
+            </p>
+            <p>
+                All publisher settings are controlled in the uSync.Publish.Config file
+                see the <a href="https://jumoo.co.uk/uSync/publisher/" target="_blank">documentation</a> for how to set this up.
+            </p>
+        </umb-box-content>
+    </umb-box>
+
+    <div class="usync-publish-settings-servers">
+        <umb-box ng-repeat="server in vm.servers">
+            <umb-box-header title="{{server.Name}}"
+                            description="{{server.Description}}">
+            </umb-box-header>
+            <umb-box-content>
+                <div>
+                    <div class="usync-server-setting">
+                        <div>Enabled as Target</div>
+                        <div>
+                            <umb-toggle on-click="server.Enabled = !server.Enabled"
+                                        checked="server.Enabled"></umb-toggle>
+                        </div>
+                    </div>
+                    <div class="usync-server-setting">
+                        <div>Url</div>
+                        <div>{{server.Url}}</div>
+                    </div>
+                    <div class="usync-user-boolean-value usync-user-boolean-header">
+                        <div></div>
+                        <div>User</div>
+                        <div>Default</div>
+                    </div>
+                    <usync-user-controlled-boolean title="Include Ancestors" option="server.SendSettings.IncludeAncestors" />
+                    <usync-user-controlled-boolean title="Include Children" option="server.SendSettings.IncludeChildren" />
+                    <usync-user-controlled-boolean title="Include Dependencies" option="server.SendSettings.IncludeDependencies" />
+                    <usync-user-controlled-boolean title="Include Files" option="server.SendSettings.IncludeFiles" />
+                    <usync-user-controlled-boolean title="Include Linked" option="server.SendSettings.IncludeLinked" />
+                    <usync-user-controlled-boolean title="Include Media" option="server.SendSettings.IncludeMedia" />
+                    <usync-user-controlled-boolean title="Delete Orphaned" option="server.SendSettings.DeleteMissing" />
+                </div>
+            </umb-box-content>
+        </umb-box>
+    </div>
+</div>

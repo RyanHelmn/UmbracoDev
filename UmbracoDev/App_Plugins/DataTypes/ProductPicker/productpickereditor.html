@@ -1,0 +1,57 @@
+﻿<div ng-controller="ProductPicker.Editor.Controller as vm">
+
+    <umb-editor-view>
+
+        <umb-editor-header name="vm.title"
+                           name-locked="true"
+                           hide-alias="true"
+                           hide-icon="true"
+                           hide-description="true">
+        </umb-editor-header>
+
+        <umb-editor-container>
+            <umb-box>
+                <umb-box-content>
+                    <div class="pull-right">
+                        <div class="input-prepend">
+                            <span class="add-on">
+                                <i class="icon icon-search"></i>
+                            </span>
+                            <input class="form-control search-input" type="text" placeholder="Type to search...">
+                        </div>
+                    </div>
+
+                    <ul class="umb-card-grid">
+                        <li ng-repeat="product in vm.products | orderBy:'name'"
+                            data-element="editor-{{product.id}}"
+                            class="-four-in-row"
+                            ng-click="vm.select(product)">
+                            <a class="umb-card-grid-item" href="" title="{{ product.name }}">
+                                <i class="icon-box"></i>
+                                {{ product.name }}
+                            </a>
+                        </li>
+                    </ul>
+                </umb-box-content>
+            </umb-box>
+        </umb-editor-container>
+
+        <umb-editor-footer>
+            <umb-editor-footer-content-right>
+                <umb-button type="button"
+                            button-style="link"
+                            shortcut="esc"
+                            action="vm.close()"
+                            label="Close">
+                </umb-button>
+                <umb-button type="button"
+                            button-style="action"
+                            action="vm.submit(model)"
+                            label="Save">
+                </umb-button>
+            </umb-editor-footer-content-right>
+        </umb-editor-footer>
+
+    </umb-editor-view>
+
+</div>

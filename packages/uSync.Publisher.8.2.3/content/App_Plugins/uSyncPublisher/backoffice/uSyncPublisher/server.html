@@ -1,0 +1,121 @@
+﻿<div ng-controller="uSyncPublisherServerSettingsController as vm">
+    <form name="uSyncPublishServerForm">
+        <umb-editor-view>
+            <umb-editor-header name="vm.server.Name"
+                               description="vm.server.Description"
+                               alias="vm.server.Alias"
+                               icon="vm.server.Icon">
+            </umb-editor-header>
+            <umb-editor-container>
+                <umb-load-indicator ng-if="vm.loading"></umb-load-indicator>
+                <div ng-if="!vm.loading" class="form-horizontal">
+
+                    <umb-box>
+                        <umb-box-header title="Status">
+
+                            <div class="flex">
+                                <div class="server-status server-status-heading" ng-if="vm.checked">
+                                    <div ng-if="vm.status.Enabled"><i class="icon icon-check color-green"></i> <localize key="usyncpublish_availible">Availible</localize> </div>
+                                    <div ng-if="vm.status.Enabled === undefined"
+                                         class="usync-wait-animate"></div>
+                                    <div ng-if="vm.status.Enabled === false"><i class="icon icon-wrong color-red"></i> {{vm.status.Status}}</div>
+                                </div>
+
+
+                                <umb-button ng-if="!vm.checked"
+                                            type="link"
+                                            button-style="link"
+                                            label="Check Access"
+                                            state="vm.buttonState"
+                                            action="vm.checkServer()">
+                                </umb-button>
+                            </div>
+                        </umb-box-header>
+                        <umb-box-content>
+                            <umb-control-group label="Show for Push"
+                                               description="Show in list when pushing content/media">
+
+                                <umb-toggle on-click="vm.server.Enabled = !vm.server.Enabled"
+                                            checked="vm.server.Enabled"></umb-toggle>
+                            </umb-control-group>
+
+                            <umb-control-group label="Show for Pull"
+                                               description="Show in list when pulling content/media">
+
+                                <umb-toggle on-click="vm.server.PullEnabled = !vm.server.PullEnabled"
+                                            checked="vm.server.PullEnabled"></umb-toggle>
+                            </umb-control-group>
+
+                            <umb-control-group label="Url"
+                                               description="Umbraco url for the server in form http://server.name/umbraco">
+                                <input type="text" class="umb-textstring umb-property-editor"
+                                       ng-model="vm.server.Url" required />
+                            </umb-control-group>
+                        </umb-box-content>
+
+                    </umb-box>
+
+                    <umb-box>
+                        <umb-box-header title="Publish Options"
+                                        description="Options for packing up content "></umb-box-header>
+                        <umb-box-content>
+
+                            <umb-control-group label="Include Children"
+                                               description="include child items when publishing">
+                                <usync-user-controlled-boolean title="Include Children" option="vm.server.SendSettings.IncludeChildren" />
+                            </umb-control-group>
+
+                            <umb-control-group label="Include Media"
+                                               description="any media items used in the content">
+                                <usync-user-controlled-boolean title="Include Media" option="vm.server.SendSettings.IncludeMedia" />
+                            </umb-control-group>
+                            <umb-control-group label="Delete orphaned"
+                                               description="remove any content on server that isn't included in source folder">
+                                <usync-user-controlled-boolean title="Delete Orphaned" option="vm.server.SendSettings.DeleteMissing" />
+                            </umb-control-group>
+
+                            <umb-control-group label="Include Dependencies"
+                                               description="any doctypes or datatypes needed">
+
+                                <usync-user-controlled-boolean title="Include Dependencies" option="vm.server.SendSettings.IncludeDependencies" />
+                            </umb-control-group>
+                            <umb-control-group label="Include Ancestors"
+                                               description="include parent items when publishing">
+                                <usync-user-controlled-boolean option="vm.server.SendSettings.IncludeAncestors" />
+                            </umb-control-group>
+
+                            <umb-control-group label="Include Files"
+                                               description="any template files">
+                                <usync-user-controlled-boolean title="Include Files" option="vm.server.SendSettings.IncludeFiles" />
+                            </umb-control-group>
+                            <umb-control-group label="Include Linked"
+                                               description="and content linked to the published content">
+                                <usync-user-controlled-boolean title="Include Linked" option="vm.server.SendSettings.IncludeLinked" />
+                            </umb-control-group>
+
+                            <umb-control-group label="User groups"
+                                               description="Group user must be in to see this server when publishing">
+                                <input type="text" id="groups" ng-model="vm.groups" class="umb-textstring umb-property-editor" />
+                            </umb-control-group>
+
+                        </umb-box-content>
+                    </umb-box>
+
+                </div>
+            </umb-editor-container>
+
+            <umb-editor-footer>
+                <umb-editor-footer-content-right>
+                    <div ng-if="!vm.loading">
+                        <umb-button type="button"
+                                    button-style="action"
+                                    label-key="buttons_save"
+                                    state="vm.buttonState"
+                                    action="vm.save()">
+                        </umb-button>
+                    </div>
+                </umb-editor-footer-content-right>
+            </umb-editor-footer>
+        </umb-editor-view>
+    </form>
+</div>

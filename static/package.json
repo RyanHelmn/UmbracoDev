@@ -1,0 +1,18 @@
+{
+  "name": "umbracodev",
+  "version": "1.0.0",
+  "description": "UmbracoDev static assets",
+  "main": "index.js",
+  "scripts": {
+    "build-css": "node-sass --include-path scss assets/styles/scss/bootstrap.scss assets/styles/css/bootstrap.css --output-style compressed",
+    "watch-scss": "nodemon -e scss -x \"npm run build-css\"",
+	"production": "cpx assets/* ../UmbracoDev"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cpx": "^1.5.0",
+    "node-sass": "^4.12.0",
+    "nodemon": "^1.19.4"
+  }
+}

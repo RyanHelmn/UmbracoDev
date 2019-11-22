@@ -1,0 +1,14 @@
+﻿@using UmbracoDev.Controllers.ForgottenPassword
+@model ForgottenPasswordPageModel
+
+@using (Html.BeginUmbracoForm<ForgottenPasswordSurfaceController>("RequestPasswordReset", FormMethod.Post))
+{
+    @Html.ValidationSummary()
+    @Html.AntiForgeryToken()
+
+    <div class="form-group mb-3">
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control rounded-pill border-0 shadow-sm px-4", type = "email", placeholder = "Email..." })
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Request Password Reset</button>
+}

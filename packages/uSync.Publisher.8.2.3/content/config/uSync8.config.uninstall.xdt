@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<uSync xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <BackOffice>
+    <HandlerSets>
+      <Handlers Name="publisher" xdt:Transform="Remove" xdt:Locator="Match(Name)" />
+    </HandlerSets>
+  </BackOffice>
+</uSync>
