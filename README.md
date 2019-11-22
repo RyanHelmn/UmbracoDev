@@ -1,5 +1,5 @@
 # UmbracoDev
-A mishmash of all sorts of dev prototypes, design patterns and more
+A mishmash of all sorts of dev prototypes, design patterns and more. Idea behind this is that breaking these components into modular ones means that we can simply integrate them into future projects. Saves having to re-create things that are tedious or take alot of time to build from the ground up.
 
 What's Included?
 - eCommerce Base (WIP)
